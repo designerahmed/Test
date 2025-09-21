@@ -20,10 +20,14 @@
       overflow: hidden;
     }
     #flipbook {
+      width: 480px;   /* عرض صفحة واحدة */
+      height: 850px;  /* ارتفاع ثابت */
       box-shadow: 0 0 20px rgba(0,0,0,0.3);
       background: white;
     }
     .page {
+      width: 480px;
+      height: 850px;
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
@@ -48,41 +52,14 @@
   </div>
 
   <script>
-    function initFlipbook() {
-      var w = window.innerWidth;
-      var flipbook = $("#flipbook");
-
-      // إذا كان الفليببوك معمول له turn من قبل → ندمروه
-      if (flipbook.data("turn")) {
-        flipbook.turn("destroy");
-      }
-
-      if (w > 900) {
-        // 📌 على الحاسوب: صفحتين
-        flipbook.turn({
-          width: 960,   // (480 × 2)
-          height: 850,
-          autoCenter: true,
-          elevation: 50,
-          gradients: true
-        });
-        $(".page").css({ width: "480px", height: "850px" });
-      } else {
-        // 📌 على الجوال: صفحة واحدة
-        flipbook.turn({
-          width: 480,
-          height: 850,
-          display: 'single', // وضع صفحة واحدة
-          autoCenter: true,
-          elevation: 50,
-          gradients: true
-        });
-        $(".page").css({ width: "480px", height: "850px" });
-      }
-    }
-
-    $(document).ready(initFlipbook);
-    $(window).resize(initFlipbook);
+    $("#flipbook").turn({
+      width: 480,       // صفحة واحدة
+      height: 850,
+      display: 'single', // إجباري صفحة واحدة
+      autoCenter: true,
+      elevation: 50,
+      gradients: true
+    });
   </script>
 </body>
 </html>
